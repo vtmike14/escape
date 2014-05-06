@@ -5,43 +5,50 @@ LOBBY:
         east: EAST HALL
         west: WEST HALL
         down: TUNNEL
+        enemy: []
 
 DINING ROOM:
         desc: dining room for the mansion residents
         items: [plate, utensils, candle]
         north: KITCHEN
         south: LOBBY
+        enemy: []
 
 KITCHEN:
         desc: kitchen where the food is prepared - it is very dark
         items: []
         south: DINING ROOM
+        enemy: []
 
 WEST HALL:
         desc: hallway to the west side of the mansion
         items: [chandelier, broken drawers]
         east: LOBBY
         west: WEST WING
+        enemy: []
 
 EAST HALL:
         desc: hallway to the east side of the mansion
         items: [mirror]
         east: EAST WING
         west: LOBBY
+        enemy: []
 
 WEST WING:
         desc: the western wing of the mansion
         items: [vacuum, bed, tattered clothes]
         east: WEST HALL
+        enemy: []
 
 EAST WING:
         desc: the eastern wing of the mansion
         items: [machette]
         west: EAST HALL
+        enemy: []
 
 TUNNEL:
         desc: a dark tunnel
         items: [key]
         up: LOBBY
-        forward: OUTSIDE
-        enemy: rat
+        north: OUTSIDE
+        enemy: [rat]
