@@ -73,6 +73,11 @@ class House:
 				print(cur_room.dirs[direction])
 				self._current_name = cur_room.dirs[direction]
 				print(self.current)
+
+			elif cur_room.isLocked(cur_room.dirs[direction]) and (cur_room.locks[cur_room.dirs[direction]] in self.scared_person.items):
+				self._current_name = cur_room.dirs[direction]
+				print(self.current)
+			
 			else:
 				print("You need a " + cur_room.locks[cur_room.dirs[direction]] + " to access this direction " + direction) 
 			#self._current = self.rooms[self._current_name]
