@@ -13,13 +13,14 @@ DINING ROOM:
         items: [plate, utnsils, candle]
         north: KITCHEN
         south: LOBBY
+        lock:
+                KITCHEN: candle
 
 KITCHEN:
         desc: kitchen where the food is prepared - it is very dark
-        items: []
+        items: [machete]
         south: DINING ROOM
         lock:
-                KITCHEN: candle
 
 WEST HALL:
         desc: hallway to the west side of the mansion
