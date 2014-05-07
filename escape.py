@@ -16,8 +16,10 @@ while True:
 	if line == 'exit':
 		break	
 	action, argument = line.partition(' ')[::2]
-	getattr(myhouse, action)(argument)
-		
+	try:
+		getattr(myhouse, action)(argument)
+	except AttributeError:
+		print("{0} is an invalid command...".format(action))	
 	
 
 
