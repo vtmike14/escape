@@ -18,13 +18,26 @@ class Room:
 		for item in data['items']:
 			self._items.append(Item(item))
 		self.dirs = {}
+		keys_otherthan_dir = ['items', 'desc', 'enemy', 'lock']
 		for key in data:
-			if key != 'items' and key != 'desc' and key != 'enemy':
+			if key not in keys_otherthan_dir:
 				self.dirs[key] = data[key];
+		#enemy
+		self.locks = {}
+		if 'lock' in data:
+			for key,value in data['lock'].items():
+				self.locks[key] = value
+
+	def isLocked(self, item):
+		#TODO
+		print("lock")
 
 	def __str__(self):
-		str_items = [str(item) for item in self._items]
-		return self.name + "\n" + self.description + "\nitems: " + ", ".join(str_items)
+		if self.name in self.locks:
+			str_items = [str(item) for item in self._items]
+			return self.name + "\n" + self.description + "\nitems: " + ", ".join(str_items)
+		else:
+			return "The " + self.name + " seems to be inaccessible. You need a " + self.locks[self.name] + " to look around."
 
 class Person:
 	"""Character playing the game"""
@@ -46,15 +59,19 @@ class House:
 		self.rooms = {}
 		for key,value in data.items():
 			self.rooms[key] = Room(data[key], key)
-		self._current = self.rooms[current_name]
+		#self._current = self.rooms[current_name]
 		self._current_name = current_name
 		self.scared_person = Person()
 
 	def go(self, direction):
-		if direction in self.rooms[self._current_name].dirs:
-			self._current_name = self.rooms[self._current_name].dirs[direction]
-			self._current = self.rooms[self._current_name]
-			print(self._current)
+		cur_room = self.rooms[self._currentName]
+		if direction in cur_room.dirs:
+			if not cur_room.isLocked(direction):
+				self._current_name = cur_room.dirs[direction]
+			else:
+				print("You need a " + cur_room.locks[cur_room.dirs[direction]] + " to access this direction " + direction) 
+			#self._current = self.rooms[self._current_name]
+			#print(self._current)
 		else:
 			print("There is no room in the direction " + direction)
 
@@ -79,7 +96,7 @@ class House:
 
 	@property
 	def current(self):
-		return self._current
+		return self._current_name
 
 	def __str__(self):
 		return "World:\n{0}".format("\n%%\n".join([name+": "+str(room) for name,room in self.rooms.items()]))

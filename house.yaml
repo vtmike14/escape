@@ -5,20 +5,21 @@ LOBBY:
         east: EAST HALL
         west: WEST HALL
         down: TUNNEL
-        enemy: []
+        lock:
+                TUNNEL: crowbar
 
 DINING ROOM:
         desc: dining room for the mansion residents
-        items: [plate, utensils, candle]
+        items: [plate, utnsils, candle]
         north: KITCHEN
         south: LOBBY
-        enemy: []
 
 KITCHEN:
         desc: kitchen where the food is prepared - it is very dark
         items: []
         south: DINING ROOM
-        enemy: []
+        lock:
+                KITCHEN: candle
 
 WEST HALL:
         desc: hallway to the west side of the mansion
