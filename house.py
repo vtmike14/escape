@@ -38,9 +38,11 @@ class House:
 	def go(self, direction):
 		if direction in self.rooms[self._current_name].dirs:
 			self._current_name = self.rooms[self._current_name].dirs[direction]
+			self._current = self.rooms[self._current_name]
+			print(self._current)
 		else:
 			print("There is no room in the direction " + direction)
-		self._current = self.rooms[self._current_name]
+		#self._current = self.rooms[self._current_name]
 
 	@property
 	def current(self):

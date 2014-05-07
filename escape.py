@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 
-import world
+import house
 import yaml
 import sys
 
-data = yaml.load(open('rooms.yaml', 'r'))
+data = yaml.load(open('house.yaml', 'r'))
 
-myworld = world.World(data, "SURGE 104C")
+myhouse = house.House(data, "LOBBY")
 
 #print(myworld)
 
@@ -15,7 +15,7 @@ while True:
 	if line == 'exit':
 		break	
 	action, argument = line.partition(' ')[::2]
-	getattr(myworld, action)(argument)
+	getattr(myhouse, action)(argument)
 		
 	
 
