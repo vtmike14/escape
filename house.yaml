@@ -10,7 +10,7 @@ LOBBY:
 
 DINING ROOM:
         desc: dining room for the mansion residents
-        items: [plate, utnsils, candle]
+        items: [plate, utensils, candle]
         north: KITCHEN
         south: LOBBY
         lock:
@@ -23,7 +23,7 @@ KITCHEN:
 
 WEST HALL:
         desc: hallway to the west side of the mansion
-        items: [chandelier, broken drawers]
+        items: [chandelier, broken drawers, crowbar]
         east: LOBBY
         west: WEST WING
         enemy: []
