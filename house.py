@@ -15,13 +15,13 @@ class Room:
 			self._items.append(Item(item))
 		self.dirs = {}
 		for key in data:
-			if key != 'items' and key != 'desc':
+			if key != 'items' and key != 'desc' and key != 'enemy':
 				self.dirs[key] = data[key];
+		#print(self._items)
 
 	def __str__(self):
 		str_items = [str(item) for item in self._items]
 		return self.description + "\nitems: " + ", ".join(str_items)
-
 
 class Person:
 	"""Character playing the game"""
@@ -32,9 +32,9 @@ class Person:
 	def __str__(self):
 		str_items = [str(item) for item in self._citems]
 		if not str_items:
-			return "\nYou do not have any items."
+			return "You do not have any items."
 		else:
-			return "\nYou have these items: " + ", ".join(str_items)
+			return "You have these items: " + ", ".join(str_items)
 
 class House:
 	"""A house contains one or more rooms"""
@@ -45,6 +45,7 @@ class House:
 			self.rooms[key] = Room(data[key])
 		self._current = self.rooms[current_name]
 		self._current_name = current_name
+		self.scared_person = Person()
 
 	def go(self, direction):
 		if direction in self.rooms[self._current_name].dirs:
@@ -53,7 +54,24 @@ class House:
 			print(self._current)
 		else:
 			print("There is no room in the direction " + direction)
-		#self._current = self.rooms[self._current_name]
+
+	def pickup(self, item):
+		print(str(self.rooms[self._current_name]._items))
+		if item in self.rooms[self._current_name]._items:
+			self.scared_person._items.append(item)
+			self.rooms[self._curent_name]._items.remove(item)
+		else:
+			print("Unable to pickup. " + item + " is not in the " + self._current_name)
+
+	def look(self, object):
+		if not object:
+			print(self._current_name)
+			print(self.rooms[self._current_name])
+		#elif direction
+		elif object == 'items':
+			print(self.scared_person)
+		else:
+			print("Not a valid look command")
 
 	@property
 	def current(self):
