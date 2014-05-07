@@ -80,7 +80,7 @@ class House:
 		if Item(item) in self.rooms[self._current_name]._items:
 			self.scared_person._citems.append(item)
 			self.rooms[self._current_name]._items.remove(Item(item))
-			print("You picked up a " + item)
+			print("You picked up (a) " + item)
 		else:
 			print("Unable to pickup. " + item + " is not in the " + self._current_name)
 
