@@ -91,7 +91,10 @@ class House:
 	def look(self, object):
 		if not object:
 			print(self.rooms[self._current_name])
-		elif object in self.rooms[self._current_name].dirs:
+
+		elif object in cur.dirs and cur.isLocked(object):
+			print("You cannot look in this direction")
+		elif object in cur.dirs:
 			name_in_dir = self.rooms[self._current_name].dirs[object]
 			print(self.rooms[name_in_dir])
 		elif object == 'items':
