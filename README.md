@@ -9,11 +9,18 @@ Input Format:
 [command] [argument]
 
 Supported Commands:
-go - moves player in direction of argument
-pickup - picks up argument if it is in the room
-look (without argument) - displays the info for current room
+go [direction] - moves player in direction of argument: north, south, east, west, or down
+pickup [item] - picks up item if it is in the room
+look - displays the info for current room
+look [direction] - returns description of room in direction
+look items - returns list of current items
+
+Commands to be Added:
+fight [enemy] - fights the enemy if they are in the room
 
 Examples:
 go north
 pickup machete
 look
+look items
+look north
