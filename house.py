@@ -25,6 +25,9 @@ class Room:
 class NoPath(RuntimeError):
 	pass
 
+class NoEnemies(RuntimeError):
+	pass
+
 class House:
 	"""A house contains one or more rooms"""
 

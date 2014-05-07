@@ -8,7 +8,8 @@ data = yaml.load(open('house.yaml', 'r'))
 
 myhouse = house.House(data, "LOBBY")
 
-#print(myworld)
+print(myhouse.rooms["LOBBY"])
+#print(myhouse)
 
 while True:
 	line = input(">>")
