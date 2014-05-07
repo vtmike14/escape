@@ -5,10 +5,14 @@ class Item:
 	def __str__(self):
 		return self.item
 
+	def __eq__(self, other):
+		return self.item == other.item
+
 class Room:
 	"""A single room"""
 
-	def __init__(self, data):
+	def __init__(self, data, name):
+		self.name = name
 		self.description = data['desc']
 		self._items = []
 		for item in data['items']:
@@ -17,11 +21,10 @@ class Room:
 		for key in data:
 			if key != 'items' and key != 'desc' and key != 'enemy':
 				self.dirs[key] = data[key];
-		#print(self._items)
 
 	def __str__(self):
 		str_items = [str(item) for item in self._items]
-		return self.description + "\nitems: " + ", ".join(str_items)
+		return self.name + "\n" + self.description + "\nitems: " + ", ".join(str_items)
 
 class Person:
 	"""Character playing the game"""
@@ -42,7 +45,7 @@ class House:
 	def __init__(self, data, current_name):
 		self.rooms = {}
 		for key,value in data.items():
-			self.rooms[key] = Room(data[key])
+			self.rooms[key] = Room(data[key], key)
 		self._current = self.rooms[current_name]
 		self._current_name = current_name
 		self.scared_person = Person()
@@ -56,18 +59,19 @@ class House:
 			print("There is no room in the direction " + direction)
 
 	def pickup(self, item):
-		print(str(self.rooms[self._current_name]._items))
-		if item in self.rooms[self._current_name]._items:
-			self.scared_person._items.append(item)
-			self.rooms[self._curent_name]._items.remove(item)
+		if Item(item) in self.rooms[self._current_name]._items:
+			self.scared_person._citems.append(item)
+			self.rooms[self._current_name]._items.remove(Item(item))
+			print("You picked up a " + item)
 		else:
 			print("Unable to pickup. " + item + " is not in the " + self._current_name)
 
 	def look(self, object):
 		if not object:
-			print(self._current_name)
 			print(self.rooms[self._current_name])
-		#elif direction
+		elif object in self.rooms[self._current_name].dirs:
+			name_in_dir = self.rooms[self._current_name].dirs[object]
+			print(self.rooms[name_in_dir])
 		elif object == 'items':
 			print(self.scared_person)
 		else:
