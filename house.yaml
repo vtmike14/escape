@@ -20,7 +20,6 @@ KITCHEN:
         desc: kitchen where the food is prepared - it is very dark
         items: [machete]
         south: DINING ROOM
-        lock:
 
 WEST HALL:
         desc: hallway to the west side of the mansion
