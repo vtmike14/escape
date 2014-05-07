@@ -23,7 +23,7 @@ KITCHEN:
 
 WEST HALL:
         desc: hallway to the west side of the mansion
-        items: [chandelier, broken drawers]
+        items: [chandelier, broken drawers, crowbar]
         east: LOBBY
         west: WEST WING
         enemy: []
