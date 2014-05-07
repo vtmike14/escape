@@ -25,6 +25,19 @@ class Room:
 class NoPath(RuntimeError):
 	pass
 
+class Person:
+	"""Character playing the game"""
+	
+	def __init__(self):
+		self._citems = []
+
+	def __str__(self):
+		str_items = [str(item) for item in self._citems]
+		if not str_items:
+			return "\nYou do not have any items."
+		else:
+			return "\nYou have these items: " + ", ".join(str_items)
+
 class House:
 	"""A house contains one or more rooms"""
 
