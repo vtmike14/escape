@@ -29,17 +29,18 @@ class Room:
 				self.locks[key] = value
 
 	def isLocked(self, item):
+		print(item + " lock:: " + " ".join(name + " : " + value for name,value in self.locks.items()) + "is " + str(isinstance(item, Room)))
 		if item in self.locks:
 			return True
 		else:
 			return False
 
 	def __str__(self):
-		#if self.name in self.locks:
-		#	return "The " + self.name + " seems to be inaccessible. You need a " + self.locks[self.name] + " to look around."
-		#else:
-		str_items = [str(item) for item in self._items]
-		return self.name + "\n" + self.description + "\nitems: " + ", ".join(str_items) + "\n" + "\n".join([dir+": "+str(room) for dir,room in self.dirs.items()])
+		if self.name in self.locks:
+			return "The " + self.name + " seems to be inaccessible. You need a " + self.locks[self.name] + " to look around."
+		else:
+			str_items = [str(item) for item in self._items]
+			return self.name + "\n" + self.description + "\nitems: " + ", ".join(str_items) + "\n" + "\n".join([dir+": "+str(room) for dir,room in self.dirs.items()])
 
 class Person:
 	"""Character playing the game"""
@@ -69,10 +70,13 @@ class House:
 		cur_room = self.rooms[self._current_name]
 		if direction in cur_room.dirs:
 			if not cur_room.isLocked(cur_room.dirs[direction]):
+				print(cur_room.dirs[direction])
 				self._current_name = cur_room.dirs[direction]
 				print(self.current)
 			else:
 				print("You need a " + cur_room.locks[cur_room.dirs[direction]] + " to access this direction " + direction) 
+			#self._current = self.rooms[self._current_name]
+			#print(self._current)
 		else:
 			print("There is no room in the direction " + direction)
 
@@ -80,15 +84,14 @@ class House:
 		if Item(item) in self.rooms[self._current_name]._items:
 			self.scared_person._citems.append(item)
 			self.rooms[self._current_name]._items.remove(Item(item))
-			print("You picked up (a) " + item)
+			print("You picked up a " + item)
 		else:
 			print("Unable to pickup. " + item + " is not in the " + self._current_name)
 
 	def look(self, object):
-		cur = self.rooms[self._current_name]
 		if not object:
 			print(self.rooms[self._current_name])
-		elif object in cur.dirs and cur.isLocked(object):
+		elif object in self.rooms[self._current_name].dirs:
 			name_in_dir = self.rooms[self._current_name].dirs[object]
 			print(self.rooms[name_in_dir])
 		elif object == 'items':
