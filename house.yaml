@@ -10,7 +10,7 @@ LOBBY:
 
 DINING ROOM:
         desc: dining room for the mansion residents
-        items: [plate, utnsils, candle]
+        items: [plate, utensils, candle]
         north: KITCHEN
         south: LOBBY
         lock:
