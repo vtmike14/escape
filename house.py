@@ -1,12 +1,9 @@
-class Item:
-	"""A single item"""
-
+class Item:	
 	def __init__(self, data):
 		self.item = data
 
 	def __str__(self):
 		return self.item
-
 
 class Room:
 	"""A single room"""
@@ -16,22 +13,40 @@ class Room:
 		self._items = []
 		for item in data['items']:
 			self._items.append(Item(item))
+		self.dirs = {}
+		for key in data:
+			if key != 'items' and key != 'desc':
+				self.dirs[key] = data[key];
 
 	def __str__(self):
 		str_items = [str(item) for item in self._items]
-		return self.description + "\nitems: " + ", ".join(map(str,self._items))
+		return self.description + "\nitems: " + ", ".join(str_items)
+
+class NoPath(RuntimeError):
+	pass
 
 class House:
-	"""A world contains one or more rooms"""
+	"""A house contains one or more rooms"""
 
 	def __init__(self, data, current_name):
 		self.rooms = {}
 		for key,value in data.items():
 			self.rooms[key] = Room(data[key])
-		
-		self.current = self.rooms[current_name]
+		self._current = self.rooms[current_name]
+		self._current_name = current_name
+
+	def go(self, direction):
+		if direction in self.rooms[self._current_name].dirs:
+			self._current_name = self.rooms[self._current_name].dirs[direction]
+		else:
+			print("There is no room in the direction " + direction)
+		self._current = self.rooms[self._current_name]
+
+	@property
+	def current(self):
+		return self._current
 
 	def __str__(self):
-		return "World:\n{0}".format("\n%%\n".join(
-			[name+": "+str(room) for name, room in self.rooms.items()]))
+		return "World:\n{0}".format("\n%%\n".join([name+": "+str(room) for name,room in self.rooms.items()]))
+
 
