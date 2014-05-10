@@ -22,13 +22,24 @@ class Room:
 		for key in data:
 			if key not in keys_otherthan_dir:
 				self.dirs[key] = data[key]
-		#enemy
+		#locked room
 		self.locks = {}
 		if 'lock' in data:
 			for key,value in data['lock'].items():
 				self.locks[key] = value
 
+		self.enemies = {}
+		if 'enemy' in data:
+			for key,value in data['enemy'].items():
+				self.enemies[key] = value
+
 	def isLocked(self, item):
+		if item in self.locks:
+			return True
+		else:
+			return False
+
+	def hasEnemy(self, item):
 		if item in self.locks:
 			return True
 		else:
@@ -76,6 +87,9 @@ class House:
 			elif cur_room.isLocked(cur_room.dirs[direction]) and (cur_room.locks[cur_room.dirs[direction]] in self.scared_person._citems):
 				self._current_name = cur_room.dirs[direction]
 				print(self.current)
+
+			elif cur_room.hasEnemy():
+				print("You need to defeat the enemy before you can continue anywhere")
 			
 			else:
 				print("You need a " + cur_room.locks[cur_room.dirs[direction]] + " to access this direction " + direction) 
@@ -92,6 +106,7 @@ class House:
 
 	def look(self, object):
 		cur = self.rooms[self._current_name]
+
 		if not object:
 			print(self.rooms[self._current_name])
 		elif object == 'items':
@@ -105,8 +120,6 @@ class House:
 		elif object in cur.dirs:
 			name_in_dir = self.rooms[self._current_name].dirs[object]
 			print(self.rooms[name_in_dir])
-		#elif object == 'items':
-		#	print(self.scared_person)
 		else:
 			print("Not a valid look command")
 

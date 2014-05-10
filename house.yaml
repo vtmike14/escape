@@ -18,7 +18,7 @@ DINING ROOM:
 
 KITCHEN:
         desc: kitchen where the food is prepared - it is very dark
-        items: [machete]
+        items: [machette]
         south: DINING ROOM
 
 WEST HALL:
@@ -40,7 +40,7 @@ WEST WING:
 
 EAST WING:
         desc: the eastern wing of the mansion
-        items: [machette]
+        items: []
         west: EAST HALL
 
 TUNNEL:
@@ -48,7 +48,8 @@ TUNNEL:
         items: [stick, torch]
         up: LOBBY
         north: OUTSIDE
-        enemy: [rat]
+        enemy: 
+                rat: machette
 
 OUTSIDE:
         desc: You are free, you win!
