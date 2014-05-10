@@ -26,26 +26,22 @@ WEST HALL:
         items: [chandelier, broken drawers, crowbar]
         east: LOBBY
         west: WEST WING
-        enemy: []
 
 EAST HALL:
         desc: hallway to the east side of the mansion
         items: [mirror]
         east: EAST WING
         west: LOBBY
-        enemy: []
 
 WEST WING:
         desc: the western wing of the mansion
         items: [vacuum, bed, tattered clothes, key]
         east: WEST HALL
-        enemy: []
 
 EAST WING:
         desc: the eastern wing of the mansion
         items: [machette]
         west: EAST HALL
-        enemy: []
 
 TUNNEL:
         desc: a dark tunnel with the only source of light from the torch
@@ -53,3 +49,7 @@ TUNNEL:
         up: LOBBY
         north: OUTSIDE
         enemy: [rat]
+
+OUTSIDE:
+        desc: You are free, you win!
+        items: []
