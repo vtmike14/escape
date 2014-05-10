@@ -49,10 +49,11 @@ class Person:
 
 	def __str__(self):
 		str_items = [str(item) for item in self._citems]
-		if not str_items:
-			return "You do not have any items."
-		else:
-			return "You have these items: " + ", ".join(str_items)
+		#if not str_items:
+		#	return "You do not have any items."
+		#else:
+		#	return "You have these items: " + ", ".join(str_items)
+		return str_items
 
 class House:
 	"""A house contains one or more rooms"""
@@ -72,7 +73,7 @@ class House:
 				self._current_name = cur_room.dirs[direction]
 				print(self.current)
 
-			elif cur_room.isLocked(cur_room.dirs[direction]) and (cur_room.locks[cur_room.dirs[direction]] in self.scared_person.items):
+			elif cur_room.isLocked(cur_room.dirs[direction]) and (cur_room.locks[cur_room.dirs[direction]] in self.scared_person._citems):
 				self._current_name = cur_room.dirs[direction]
 				print(self.current)
 			
@@ -94,7 +95,11 @@ class House:
 		if not object:
 			print(self.rooms[self._current_name])
 		elif object == 'items':
-			print(self.scared_person)
+			if not self.scared_person:
+				print("You do not have any items")
+			else:
+				str_person = [str(item) for item in self.scared_person._citems]
+				print("You have these items: " + ", ".join(str_person))
 		elif cur.isLocked(cur.dirs[object]):
 			print("You cannot look in this direction")
 		elif object in cur.dirs:

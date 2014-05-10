@@ -37,7 +37,7 @@ EAST HALL:
 
 WEST WING:
         desc: the western wing of the mansion
-        items: [vacuum, bed, tattered clothes]
+        items: [vacuum, bed, tattered clothes, key]
         east: WEST HALL
         enemy: []
 
@@ -48,8 +48,8 @@ EAST WING:
         enemy: []
 
 TUNNEL:
-        desc: a dark tunnel
-        items: [key]
+        desc: a dark tunnel with the only source of light from the torch
+        items: [stick, torch]
         up: LOBBY
         north: OUTSIDE
         enemy: [rat]
