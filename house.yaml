@@ -48,8 +48,7 @@ TUNNEL:
         items: [stick, torch]
         up: LOBBY
         north: OUTSIDE
-        enemy: 
-                rat: machette
+        enemy: { rat: machette }
 
 OUTSIDE:
         desc: You are free, you win!

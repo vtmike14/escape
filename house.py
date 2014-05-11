@@ -40,7 +40,7 @@ class Room:
 			return False
 
 	def hasEnemy(self, item):
-		if item in self.locks:
+		if item in self.enemies:
 			return True
 		else:
 			return False
@@ -80,7 +80,7 @@ class House:
 	def go(self, direction):
 		cur_room = self.rooms[self._current_name]
 		if direction in cur_room.dirs:
-			if not cur_room.isLocked(cur_room.dirs[direction]):
+			if not cur_room.isLocked(cur_room.dirs[direction]) and not cur_room.hasEnemy(cur_room):
 				self._current_name = cur_room.dirs[direction]
 				print(self.current)
 
@@ -88,7 +88,7 @@ class House:
 				self._current_name = cur_room.dirs[direction]
 				print(self.current)
 
-			elif cur_room.hasEnemy():
+			elif cur_room.hasEnemy(cur_room):
 				print("You need to defeat the enemy before you can continue anywhere")
 			
 			else:
