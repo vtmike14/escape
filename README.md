@@ -16,11 +16,6 @@ look items - returns list of current items
 Commands to be Added:
 fight [enemy] - fights the enemy if they are in the room
 
-Known Bugs:
--Locked rooms can not be unlocked
--Looking in direction of locked room does interesting things
--Fight command not implemented
-
 Examples:
 go north
 pickup machete
