@@ -17,8 +17,7 @@ Commands to be Added:
 fight [enemy] - fights the enemy if they are in the room
 
 Known Bugs:
--Fight command not implemented
--Winning doe snot do anything - game needs to finish
+-Winning does not do anything - game needs to finish
 
 Examples:
 go north
