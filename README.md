@@ -16,6 +16,9 @@ look items - returns list of current items
 Commands to be Added:
 fight [enemy] - fights the enemy if they are in the room
 
+Known Bugs:
+-Winning does not do anything - game needs to finish
+
 Examples:
 go north
 pickup machete
