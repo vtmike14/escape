@@ -15,6 +15,7 @@ print(map)
 print("                       TYPE 'start' TO BEGIN...")
 line = input(">>")
 while line != 'start':
+	print("Invalid input: please type 'start' to begin...")
 	line = input(">>")
 
 intro = "\n\nWelcome to the game ESCAPE! where you are stuck\nin a house until you can figure out what to do to get out.\n\nIn order to get out, you must collect the proper items\nas well as find the correct rooms to go through to get to your freedom,\nand if you don't make it through, well, it just sucks to suck.\n\nThe commands for the game are:\ngo [direction]\nlook [direction]\npickup [item]\nfight [enemy]\n\nFor those of you with weak constitutions and can't make it through\nthe game, well, you can type ""exit"" in order to get out of the game.\n\nGood Luck...\n\n"
@@ -34,10 +35,11 @@ while True:
 		break	
 	action, argument = line.partition(' ')[::2]
 	try:
-		getattr(myhouse, action)(argument)
+		end = getattr(myhouse, action)(argument)
 	except AttributeError:
 		print("{0} is an invalid command...".format(action))	
-	
+	if end == 'endgame':
+		break
 
 
 

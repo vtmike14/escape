@@ -34,7 +34,7 @@ class Room:
 				self.enemies[key] = value
 
 	def isLocked(self, item):
-		print(item + " lock:: " + " ".join(name + " : " + value for name,value in self.locks.items()) + "is " + str(isinstance(item, Room)))
+		#print(item + " lock:: " + " ".join(name + " : " + value for name,value in self.locks.items()) + "is " + str(isinstance(item, Room)))
 		if item in self.locks:
 			return True
 		else:
@@ -61,10 +61,10 @@ class Person:
 
 	def __str__(self):
 		str_items = [str(item) for item in self._citems]
-		#if not str_items:
-		#	return "You do not have any items."
-		#else:
-		#	return "You have these items: " + ", ".join(str_items)
+		if not str_items:
+			return "You do not have any items."
+		else:
+			return "You have these items: " + ", ".join(str_items)
 		return str_items
 
 class House:
@@ -81,31 +81,38 @@ class House:
 	def go(self, direction):
 		cur_room = self.rooms[self._current_name]
 		if direction in cur_room.dirs:
-			if not cur_room.isLocked(cur_room.dirs[direction]) and not cur_room.hasEnemy(cur_room):
+			if not cur_room.isLocked(cur_room.dirs[direction]) and not cur_room.hasEnemy(cur_room.dirs[direction]):
 				self._current_name = cur_room.dirs[direction]
 				print(self.current)
 
 			elif cur_room.isLocked(cur_room.dirs[direction]) and (cur_room.locks[cur_room.dirs[direction]] in self.scared_person._citems):
 				self._current_name = cur_room.dirs[direction]
 				print(self.current)
-
-			elif cur_room.hasEnemy(cur_room):
-				print("You need to defeat the enemy before you can continue anywhere")
 			
+			elif cur_room.hasEnemy(cur_room.dirs[direction]) and (cur_room.enemies[cur_room.dirs[direction]] in self.scared_person._citems):
+				print("Congratulations!!! You have slain the nasty rat with the machette and escaped the scary house!")
+				print("Please stay tuned for more updates from the amazing escape game development team presented to you by:")
+				print("Neil Singh, Caleb Stroud, Michael Burton, and Timothy Hogarty")
+				return "endgame"			
+
+			elif cur_room.hasEnemy(cur_room.dirs[direction]):
+				print("You need to defeat the enemy before you can go outside.")
+				print("You will need a blade of some kind to defeat the monster.")
+	
 			else:
-				print("You need a " + cur_room.locks[cur_room.dirs[direction]] + " to access this direction " + direction) 
+				print("You need a " + cur_room.locks[cur_room.dirs[direction]] + " to access this direction " + direction + ".") 
 			#self._current = self.rooms[self._current_name]
 			#print(self._current)
 		else:
-			print("There is no room in the direction " + direction)
+			print("There is no room in the direction " + direction + ".")
 
 	def pickup(self, item):
 		if Item(item) in self.rooms[self._current_name]._items:
 			self.scared_person._citems.append(item)
 			self.rooms[self._current_name]._items.remove(Item(item))
-			print("You picked up a " + item)
+			print("You picked up a " + item + ".")
 		else:
-			print("Unable to pickup. " + item + " is not in the " + self._current_name)
+			print("Unable to pickup. " + item + " is not in the " + self._current_name + ".")
 
 	def look(self, object):
 		cur = self.rooms[self._current_name]
@@ -113,18 +120,16 @@ class House:
 		if not object:
 			print(self.rooms[self._current_name])
 		elif object == 'items':
-			if not self.scared_person:
-				print("You do not have any items")
-			else:
-				str_person = [str(item) for item in self.scared_person._citems]
-				print("You have these items: " + ", ".join(str_person))
+			print(self.scared_person)
+		elif object not in cur.dirs:
+			print("There is not a room in the chosen direction.") 
 		elif cur.isLocked(cur.dirs[object]):
-			print("You cannot look in this direction")
+			print("You cannot look in this direction.")
 		elif object in cur.dirs:
 			name_in_dir = self.rooms[self._current_name].dirs[object]
 			print(self.rooms[name_in_dir])
 		else:
-			print("Not a valid look command")
+			print("Not a valid look command.")
 
 	@property
 	def current(self):

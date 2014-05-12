@@ -44,11 +44,12 @@ EAST WING:
         west: EAST HALL
 
 TUNNEL:
-        desc: a dark tunnel with the only source of light from the torch
+        desc: a dark tunnel lit by a torch - you can also see the light at the end of the tunnel leading outside but there is a monster rat in the way!
         items: [stick, torch]
         up: LOBBY
         north: OUTSIDE
-        enemy: { rat: machette }
+        enemy:  
+                OUTSIDE: machette
 
 OUTSIDE:
         desc: You are free, you win!
