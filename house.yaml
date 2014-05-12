@@ -18,7 +18,7 @@ DINING ROOM:
 
 KITCHEN:
         desc: kitchen where the food is prepared - it is very dark
-        items: [machete]
+        items: [machette]
         south: DINING ROOM
 
 WEST HALL:
@@ -26,30 +26,30 @@ WEST HALL:
         items: [chandelier, broken drawers, crowbar]
         east: LOBBY
         west: WEST WING
-        enemy: []
 
 EAST HALL:
         desc: hallway to the east side of the mansion
         items: [mirror]
         east: EAST WING
         west: LOBBY
-        enemy: []
 
 WEST WING:
         desc: the western wing of the mansion
-        items: [vacuum, bed, tattered clothes]
+        items: [vacuum, bed, tattered clothes, key]
         east: WEST HALL
-        enemy: []
 
 EAST WING:
         desc: the eastern wing of the mansion
-        items: [machette]
+        items: []
         west: EAST HALL
-        enemy: []
 
 TUNNEL:
-        desc: a dark tunnel
-        items: [key]
+        desc: a dark tunnel with the only source of light from the torch
+        items: [stick, torch]
         up: LOBBY
         north: OUTSIDE
-        enemy: [rat]
+        enemy: { rat: machette }
+
+OUTSIDE:
+        desc: You are free, you win!
+        items: []
