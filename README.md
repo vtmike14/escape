@@ -17,7 +17,7 @@ Commands to be Added:
 fight [enemy] - fights the enemy if they are in the room
 
 Known Bugs:
--Winning does not do anything - game needs to finish
+-No known bugs. Please let us know if you find any while escaping
 
 Examples:
 go north
