@@ -17,7 +17,7 @@ Commands to be Added:
 fight [enemy] - fights the enemy if they are in the room
 
 Known Bugs:
--No known bugs. Please let us know if you find any while escaping
+-None. Please let us know if you find any while escaping
 
 Examples:
 go north
