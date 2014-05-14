@@ -41,6 +41,7 @@ while True:
 	action, argument = line.partition(' ')[::2]
 	try:
 		end = getattr(myhouse, action)(argument)
+	# If there is an error in the command, then an exception is printed out
 	except AttributeError:
 		print("{0} is an invalid command...".format(action))	
 	if end == 'endgame':

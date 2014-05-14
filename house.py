@@ -4,9 +4,11 @@ class Item:
 		self.item = data
 
 	def __str__(self):
+	# Function returns the item data requested
 		return self.item
 
 	def __eq__(self, other):
+	# Function checks to see if item matches the item passed in
 		return self.item == other.item
 
 # Defines a room of a house
@@ -27,7 +29,7 @@ class Room:
 		for key in data:
 			if key not in keys_otherthan_dir:
 				self.dirs[key] = data[key]
-		# Locked room
+		# Locked room, if locked
 		self.locks = {}
 		if 'lock' in data:
 			for key,value in data['lock'].items():
@@ -55,6 +57,7 @@ class Room:
 			return False
 
 	def __str__(self):
+	# Function returns the room information when requested
 		if self.name in self.locks:
 			return "The " + self.name + " seems to be inaccessible. You need a " + self.locks[self.name] + " to look around."
 		else:
@@ -69,6 +72,7 @@ class Person:
 		self._citems = []
 
 	def __str__(self):
+		# Function checks to see if the user has any items or not
 		str_items = [str(item) for item in self._citems]
 		if not str_items:
 			return "You do not have any items."
